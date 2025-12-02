@@ -3,15 +3,22 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-
+from fastapi.middleware.cors import CORSMiddleware
 from core.database import engine, Base
 from api import bookapi
 
 import models
-
+origins = ["*"]
 #intialize app
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 #mount static
 app.mount("/static", StaticFiles(directory="static"), name="static")
 

@@ -6,11 +6,13 @@ class BookBase(BaseModel):
     description: Optional[str] = None
 
 class BookCreate(BookBase):
-    pass
+    title: str
+    author_id: int
+    description: Optional[str] = None
 
 class BookResponse(BookBase):
     id: int
 
     class Config:
         orm_mode = True
- 
+  
